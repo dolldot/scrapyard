@@ -1,0 +1,32 @@
+package components
+
+import "github.com/dolldot/scrapyard/bookmarkd/generated/ent"
+
+templ BookmarkEdit(data *ent.Bookmark) {
+	<div class="modal is-active" hx-ext="remove">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<form
+				hx-put={ "/" + data.AccountNumber + "/bookmark/" + data.UUID.String() }
+				hx-swap="none"
+			>
+				<div class="field">
+					<label class="label" for="name">Name</label>
+					<div class="control">
+						<input class="input" id="name" name="name" type="text" value={ data.Name } autocomplete="off"/>
+					</div>
+				</div>
+				<div class="field">
+					<label class="label" for="url">URL</label>
+					<div class="control">
+						<input class="input" id="url" name="url" type="text" value={ data.URL } autocomplete="off"/>
+					</div>
+				</div>
+				<div class="control">
+					<button class="button is-primary">Submit</button>
+					<button class="button is-secondary" data-remove="true">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+}

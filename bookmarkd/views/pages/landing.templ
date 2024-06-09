@@ -1,0 +1,43 @@
+package pages
+
+templ Landing() {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"/>
+			<script src="https://unpkg.com/htmx.org@1.9.12" integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous"></script>
+			<script src="https://unpkg.com/htmx-remove@latest" integrity="sha384-v6VOSW2F42qo+95FGFDZCY72+0md5SolbibTa8Kgn8DkCrevZNkgTsWXdEMXyeRX" crossorigin="anonymous">
+</script>
+			<script src="/assets/main.js"></script>
+			<title>BookmarkD</title>
+		</head>
+		<body>
+			<div id="modal-placeholder"></div>
+			<section class="hero is-secondary is-fullheight">
+				<div class="hero-body">
+					<div class="">
+						<p class="title">BookmarkD</p>
+						<p class="subtitle">Create bookmarks for free</p>
+						<div class="is-flex">
+							<button
+								class="button is-primary mr-1"
+								hx-post="/account"
+								hx-swap="none"
+								hx-confirm="Are you sure to create an account?"
+							>
+								Generate Account
+							</button>
+							<button
+								class="button is-link"
+								hx-get="/account/login"
+								hx-swap="outerHTML"
+							>Login</button>
+						</div>
+					</div>
+				</div>
+			</section>
+		</body>
+	</html>
+}

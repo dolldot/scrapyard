@@ -1,0 +1,32 @@
+package layout
+
+templ Header(accNumber string) {
+	<header>
+		<nav class="navbar is-black" role="navigation" aria-label="main navigation">
+			<div class="navbar-brand">
+				<a class="navbar-item" href="#">
+					<strong>BookmarkD</strong>
+				</a>
+			</div>
+			<div id="navbarBasicExample" class="navbar-menu">
+				<div class="navbar-end">
+					<div class="navbar-item">
+						{ accNumber }
+					</div>
+					<div class="navbar-item">
+						<div class="buttons">
+							<a
+								hx-get={ "/" + accNumber + "/bookmark/add" }
+								hx-target="#modal-placeholder"
+								hx-swap="innerHTML"
+								class="button is-primary"
+							>
+								<strong>Add</strong>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+}

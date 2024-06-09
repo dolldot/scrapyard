@@ -1,0 +1,16 @@
+package components
+
+templ Login() {
+	<form
+		hx-post="/account/login"
+		hx-swap="none"
+		class="field has-addons"
+	>
+		<div class="control">
+			<input class="input" id="account" name="account" type="text" placeholder="account number" autocomplete="off"/>
+		</div>
+		<div class="control">
+			<button class="button is-link">Login</button>
+		</div>
+	</form>
+}
