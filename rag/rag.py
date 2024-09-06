@@ -9,7 +9,8 @@ def main():
     load_dotenv()
 
     query = "Can I bring kids to Bella Vista?"
-    rag(query)
+    response = rag(query)
+    print(response)
 
 
 def rag(query: str):
@@ -27,7 +28,6 @@ def rag(query: str):
         | StrOutputParser()
     )
     response = qa_chain.invoke(query)
-    print(response)
     return response
 
 

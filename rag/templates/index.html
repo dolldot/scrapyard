@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Chat Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        #chat-container {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 18px;
+            max-width: 70%;
+        }
+        .user-message {
+            background-color: #DCF8C6;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        .bot-message {
+            background-color: #E5E5EA;
+            align-self: flex-start;
+        }
+        form {
+            display: flex;
+            gap: 10px;
+        }
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #reset-button {
+            background-color: #f44336;
+            margin-top: 10px;
+        }
+        #reset-button:hover {
+            background-color: #d32f2f;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .loading::after {
+            content: "Thinking";
+            animation: loading 1.5s infinite;
+        }
+        @keyframes loading {
+            0% { content: "Thinking"; }
+            33% { content: "Thinking."; }
+            66% { content: "Thinking.."; }
+            100% { content: "Thinking..."; }
+        }
+    </style>
+</head>
+<body>
+    <h1>RAG Chat Interface</h1>
+    <div id="chat-container"></div>
+    <form id="query-form">
+        <input type="text" name="query" placeholder="Type your message here" required>
+        <button type="submit">Send</button>
+    </form>
+    <button id="reset-button">Reset Chat</button>
+    <div class="loading"></div>
+
+    <script>
+        const chatContainer = document.getElementById('chat-container');
+        const queryForm = document.getElementById('query-form');
+        const loadingIndicator = document.querySelector('.loading');
+        const resetButton = document.getElementById('reset-button');
+
+        queryForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(queryForm);
+            const query = formData.get('query');
+
+            // Add user message to chat
+            addMessageToChat(query, 'user-message');
+
+            // Show loading indicator
+            loadingIndicator.style.display = 'block';
+
+            // Send POST request
+            fetch('/query', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Add bot message to chat
+                addMessageToChat(data, 'bot-message');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                addMessageToChat('An error occurred. Please try again.', 'bot-message');
+            })
+            .finally(() => {
+                // Hide loading indicator
+                loadingIndicator.style.display = 'none';
+                // Clear input field
+                queryForm.reset();
+            });
+        });
+
+        function addMessageToChat(message, className) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `message ${className}`;
+            messageElement.textContent = message;
+            chatContainer.appendChild(messageElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        resetButton.addEventListener('click', function() {
+            chatContainer.innerHTML = '';
+        });
+    </script>
+</body>
+</html>
