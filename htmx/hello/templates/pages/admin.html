@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{ template "meta.html" . }}
+    <title>Admin Dashboard</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <h1>Admin Panel</h1>
+      </div>
+      <nav class="navigation">
+        <ul>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Users</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main">
+      <aside class="sidebar">
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="#">Overview</a></li>
+          <li><a href="#">Analytics</a></li>
+          <li><a href="#">Reports</a></li>
+        </ul>
+      </aside>
+      <section class="content">
+        <h1>Welcome, Admin!</h1>
+        <p>
+          This is your admin dashboard where you can manage various aspects of
+          the system.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Avatar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{ range $data := .data }}
+            <tr>
+              <td>{{ .Id }}</td>
+              <td>{{ .Email }}</td>
+              <td>{{ .FirstName }}</td>
+              <td>{{ .LastName }}</td>
+              <td>{{ .Avatar }}</td>
+            </tr>
+            {{ end }}
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

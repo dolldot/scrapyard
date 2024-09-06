@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{ template "meta.html" . }}
+    <title>Hello World</title>
+  </head>
+  <body id="app">
+    <form class="login" hx-post="/login">
+      <div class="form">
+        <img alt="Vue logo" src="/assets/images/logo.png" />
+        <input
+          type="email"
+          name="email"
+          value=""
+          placeholder="Email"
+          autocomplete="off"
+        />
+        <input
+          type="password"
+          name="password"
+          value=""
+          placeholder="Password"
+        />
+        <button type="submit">Login</button>
+        <p class="register">
+          Don't have an account?
+          <a class="link" to="/register">Sign Up</a>
+        </p>
+      </div>
+    </form>
+  </body>
+</html>

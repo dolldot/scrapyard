@@ -1,0 +1,109 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f8f9fd;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f0f0f0;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navigation {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation li {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: #333;
+}
+
+.main {
+  display: flex;
+  margin: 1rem;
+}
+
+.sidebar {
+  width: 200px;
+  padding: 1rem;
+  border-right: 1px solid #ddd;
+}
+
+.sidebar h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #333;
+}
+
+.content {
+  flex: 1;
+  padding: 1rem;
+}
+
+.content h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.table {
+  background: #fff;
+  /* color: #fff; */
+  border-collapse: collapse;
+  /* border: none; */
+}
+
+.table thead {
+  background: #9195f6;
+  color: #fff;
+}
+
+/* .table thead th { */
+/*   padding: 0.5rem 0.8rem; */
+/* } */
+
+.table tbody {
+  /* background: #f0f0f0; */
+}
+
+.table th,
+td {
+  padding: 1rem 2rem;
+}
