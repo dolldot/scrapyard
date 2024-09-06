@@ -1,0 +1,4 @@
+(library
+ (name second)
+ (preprocess (pps ppx_show))
+ (libraries ppx_show.runtime))
